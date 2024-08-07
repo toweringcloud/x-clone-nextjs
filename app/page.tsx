@@ -22,12 +22,14 @@ export default function LogIn() {
 					type="email"
 					placeholder="Email"
 					required
+					errors={state?.fieldErrors.email}
 				/>
 				<FormInput
 					name="username"
 					type="string"
 					placeholder="Username"
 					required
+					errors={state?.fieldErrors.username}
 				/>
 				<FormInput
 					name="password"
@@ -36,13 +38,18 @@ export default function LogIn() {
 					required
 					errors={state?.fieldErrors.password}
 				/>
-				<FormButton text="Log in" />
 				{state && Object.keys(state.fieldErrors).length == 0 ? (
-					<div className="bg-[#32BD6F] text-black font-semibold rounded-xl h-10 p-2 flex flex-row gap-3">
-						<CheckBadgeIcon className="size-6" />
-						Welcome back!
-					</div>
-				) : null}
+					<>
+						<FormButton text="Log in" mode="submit" />
+						<FormButton text="Reset" mode="reset" />
+						<div className="bg-[#32BD6F] text-black font-semibold rounded-xl h-10 p-2 flex flex-row gap-3">
+							<CheckBadgeIcon className="size-6" />
+							Welcome back!
+						</div>
+					</>
+				) : (
+					<FormButton text="Log in" mode="submit" />
+				)}
 			</form>
 		</div>
 	);

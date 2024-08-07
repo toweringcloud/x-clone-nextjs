@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from "react";
-import { cn } from "../utils";
+import { cn } from "../libs/utils";
 
 interface InputProps {
 	name: string;
