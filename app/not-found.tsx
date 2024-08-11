@@ -4,8 +4,10 @@ export const metadata = {
 
 export default function NotFound() {
 	return (
-		<div>
-			<h1>Not Found!</h1>
+		<div className="w-full h-screen">
+			<div className="h-full flex justify-center items-center">
+				<span className="flex flex-col items-center">Not Found</span>
+			</div>
 		</div>
 	);
 }

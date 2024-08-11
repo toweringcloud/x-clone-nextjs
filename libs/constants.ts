@@ -1,4 +1,4 @@
-export const EMAIL_NOT_ALLOWED_ERROR = "Only @zod.com emails are allowed.";
+export const EMAIL_NOT_ALLOWED_ERROR = "Only @gmail.com emails are allowed.";
 
 export const USERNAME_MIN_LENGTH = 5;
 export const USERNAME_MIN_LENGTH_ERROR =

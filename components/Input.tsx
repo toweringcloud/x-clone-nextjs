@@ -16,7 +16,8 @@ export default function Input({
 			<input
 				name={name}
 				className={cn([
-					"text-black bg-transparent rounded-2xl w-full h-10 pl-5 focus:outline-none ring-2 focus:ring-4 transition focus:ring-neutral-500 border-none placeholder:text-neutral-400",
+					"text-black bg-transparent rounded-2xl w-full h-10 pl-5 placeholder:text-neutral-400",
+					"focus:outline-none ring-2 focus:ring-4 transition focus:ring-neutral-500 border-none",
 					`${errors.length > 0 ? "ring-red-500" : "ring-neutral-200"}`,
 				])}
 				{...rest}

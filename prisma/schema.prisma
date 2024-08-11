@@ -45,8 +45,8 @@ model Tweet {
 model Like {
   createdAt   DateTime  @default(now()) @map("created_at")
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      Int
+  userId      Int       @map("user_id")
   tweet       Tweet     @relation(fields: [tweetId], references: [id], onDelete: Cascade)
-  tweetId     Int
+  tweetId     Int       @map("tweet_id")
   @@id(name: "cid", [userId, tweetId])
 }
