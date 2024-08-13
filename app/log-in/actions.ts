@@ -40,8 +40,6 @@ export async function logIn(prevState: any, formData: FormData) {
 	}
 
 	//-verify user password
-	console.log("[p1] " + result.data.password);
-	console.log("[p2] " + user!.password);
 	const ok = await bcrypt.compare(
 		result.data.password,
 		user!.password ?? ":::__:::"

@@ -7,7 +7,7 @@ interface SessionContent {
 
 export default function getSession() {
 	return getIronSession<SessionContent>(cookies(), {
-		cookieName: "nestjs-fullstack-challenge",
+		cookieName: process.env.COOKIE_NAME!,
 		password: process.env.COOKIE_PASSWORD!,
 	});
 }

@@ -23,10 +23,14 @@ export default async function Profile() {
 	const user = await getUser();
 	console.log(user!.username);
 
+	const goHome = async () => {
+		"use server";
+		redirect("/");
+	};
 	const logOut = async () => {
 		"use server";
 		const session = await getSession();
-		await session.destroy();
+		session.destroy();
 		redirect("/log-in");
 	};
 
@@ -40,6 +44,9 @@ export default async function Profile() {
 				</span>
 				<span> :::::</span>
 			</h1>
+			<form action={goHome} className="-mb-5">
+				<Button text="Go to Home" />
+			</form>
 			<form action={logOut}>
 				<Button text="Log out" />
 			</form>
