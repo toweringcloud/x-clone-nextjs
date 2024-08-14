@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { z } from "zod";
 
 import { db } from "@/libs/db";
 import getSession from "@/libs/session";
@@ -41,4 +42,38 @@ export async function getTweets(count: number, page: number) {
 	});
 	if (!tweets) return [];
 	return tweets;
+}
+
+const formSchema = z.object({
+	tweet: z.string({ required_error: "Tweet is required!" }),
+});
+
+export async function addTweet(prevState: any, formData: FormData) {
+	//-validate user input
+	const data = {
+		tweet: formData.get("tweet"),
+	};
+	const result = await formSchema.spa(data);
+	if (!result.success) {
+		return result.error.flatten();
+	}
+
+	//-add user's tweet
+	const session = await getSession();
+	if (session.id) {
+		await db.tweet.create({
+			data: {
+				tweet: result.data.tweet,
+				user: {
+					connect: {
+						id: session.id,
+					},
+				},
+			},
+			select: {
+				id: true,
+			},
+		});
+		redirect("/");
+	}
 }

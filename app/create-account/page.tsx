@@ -51,7 +51,7 @@ export default function CreateAccount() {
 			</form>
 			<hr className="-mt-5 -mb-5" />
 			<Link href="/log-in">
-				<Button text="Sign-in" />
+				<Button text="Sign-in" color="V" />
 			</Link>
 		</div>
 	);

@@ -32,7 +32,7 @@ export default function LogIn() {
 					required
 					errors={state?.fieldErrors.password}
 				/>
-				<Button text="Verify account" />
+				<Button text="Verify account" color="V" />
 			</form>
 			<hr className="-mt-5 -mb-5" />
 			<Link href="/create-account">
