@@ -17,6 +17,8 @@ const setButtonColor = (color: string) => {
 			return "bg-green-300 hover:bg-green-500 text-white";
 		case "b":
 			return "bg-blue-300 hover:bg-blue-500 text-white";
+		case "o":
+			return "bg-orange-300 hover:bg-orange-500 text-white";
 		case "v":
 			return "bg-violet-300 hover:bg-violet-500 text-white";
 		default:
