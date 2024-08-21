@@ -12,7 +12,7 @@ import SearchTweet from "@/components/SearchTweet";
 
 import { getUser, getTweetCount, searchTweets } from "./actions";
 
-export default async function Home() {
+export default async function Search() {
 	const user = await getUser();
 	console.log("# users : " + user!.username);
 

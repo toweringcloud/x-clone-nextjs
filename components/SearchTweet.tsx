@@ -6,17 +6,12 @@ import { useFormState } from "react-dom";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 
-interface AddTweetProps {
+interface SearchTweetProps {
 	action: Function;
-	tweetId: number;
-	articles: any;
+	keyword: string;
 }
 
-export default function SearchTweet({
-	action,
-	tweetId,
-	articles,
-}: AddTweetProps) {
+export default function SearchTweet({ action, keyword }: AddTweetProps) {
 	const [state, dispatch] = useFormState(action, null);
 	const formRef = useRef<HTMLFormElement>(null);
 	const handleReset = () => {
@@ -24,7 +19,7 @@ export default function SearchTweet({
 	};
 
 	const [stateVal, reducerFn] = useOptimistic(
-		{ tweetId, articles },
+		{ keyword },
 		(prevState, payload) => ({})
 	);
 
@@ -36,7 +31,7 @@ export default function SearchTweet({
 	useEffect(() => {
 		//-handle db action for real response
 		handleReset();
-	}, [state, articles]);
+	}, [state, keyword]);
 
 	return (
 		<form action={dispatch} ref={formRef} className="flex flex-col gap-3">

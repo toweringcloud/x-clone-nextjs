@@ -78,8 +78,10 @@ export default async function Home() {
 										{item._count.comments}
 									</span>
 								</div>
-								<div className="mr-1 flex gap-1 items-center *:flex *:gap-1 *:items-center">
-									{item.user.username}
+								<div className="mr-1 flex gap-1 items-center hover:text-sky-700">
+									<Link href={`/users/${item.user.username}`}>
+										{item.user.username}
+									</Link>
 								</div>
 							</div>
 						</div>

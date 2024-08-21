@@ -21,9 +21,15 @@ import {
 	removeTweet,
 } from "./actions";
 
-export default async function Profile() {
+export default async function Detail({ params }) {
 	const user = await getUser();
 	console.log(user!.username);
+
+	const userName = params.username;
+	console.log(userName);
+	// if (isNaN(userName) || user!.username !== userName) {
+	// 	return notFound();
+	// }
 
 	const tweetCount = await getTweetCount();
 	console.log("# tweets : " + tweetCount);
@@ -32,17 +38,10 @@ export default async function Profile() {
 	const pageCount = tweetCount / 3 + 1;
 	const tweets = await getTweets(3, currentPage);
 
-	const logOut = async () => {
-		"use server";
-		const session = await getSession();
-		session.destroy();
-		redirect("/log-in");
-	};
-
 	return (
 		<div className="h-screen flex justify-center items-start">
 			<div className="mx-[10%] min-w-[500px] py-10 px-6 flex flex-col gap-8">
-				<div className="text-3xl text-center">💚 Profile 💚</div>
+				<div className="text-3xl text-center">💚 User Info 💚</div>
 				<div className="grid grid-cols-2 gap-2">
 					<span>
 						<Link href="/">
@@ -50,14 +49,14 @@ export default async function Profile() {
 						</Link>
 					</span>
 					<span>
-						<form action={logOut}>
-							<Button text="Sign-out" color="R" />
-						</form>
+						<Link href="/search">
+							<Button text="Go to Search" color="Y" />
+						</Link>
 					</span>
 				</div>
 
 				<h1 className="text-center">
-					<span>::::: Welcome, </span>
+					<span>::::: Story of </span>
 					<span className="text-green-900 text-lg font-bold">
 						{user?.username}
 					</span>
