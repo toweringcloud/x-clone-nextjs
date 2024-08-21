@@ -32,7 +32,19 @@ export async function getTweets(count: number, page: number) {
 		select: {
 			id: true,
 			tweet: true,
+			views: true,
 			createdAt: true,
+			user: {
+				select: {
+					username: true,
+				},
+			},
+			_count: {
+				select: {
+					comments: true,
+					likes: true,
+				},
+			},
 		},
 		skip: count * page,
 		take: count,

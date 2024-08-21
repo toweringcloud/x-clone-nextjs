@@ -5,15 +5,14 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 
 import Input from "@/components/Input";
 
-export default function RemoveComment({ action, tweetId, commentId }: any) {
+export default function RemoveTweet({ action, tweetId }: any) {
 	const [state, dispatch] = useFormState(action, null);
 
 	return (
-		<form action={dispatch} className="p-0 flex flex-col">
+		<form action={dispatch} className="flex flex-col">
 			<Input name="tweetId" value={tweetId} required type="hidden" />
-			<Input name="commentId" value={commentId} required type="hidden" />
 			<button>
-				<TrashIcon className="size-4 text-orange-50" />
+				<TrashIcon className="size-4 text-orange-500 -mt-1" />
 			</button>
 		</form>
 	);

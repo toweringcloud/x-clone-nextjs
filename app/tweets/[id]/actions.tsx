@@ -128,6 +128,11 @@ export async function getComments(
 			id: true,
 			payload: true,
 			created_at: true,
+			user: {
+				select: {
+					id: true,
+				},
+			},
 		},
 		where: {
 			tweetId,

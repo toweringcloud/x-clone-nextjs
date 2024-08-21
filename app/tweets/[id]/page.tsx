@@ -43,12 +43,12 @@ export default async function Detail({ params }) {
 	console.log("# comments : " + commentCount);
 
 	let currentPage = 0;
-	const pageCount = commentCount / 3 + 1;
-	const comments = await getComments(3, currentPage, id);
+	const pageCount = commentCount / 5 + 1;
+	const comments = await getComments(5, currentPage, id);
 
 	return (
-		<div className="h-screen flex justify-center items-center">
-			<div className="flex flex-col gap-10 py-8 px-6 mx-[15%] min-w-[400px]">
+		<div className="h-screen flex justify-center items-start">
+			<div className="mx-[10%] min-w-[500px] py-10 px-6 flex flex-col gap-8">
 				<div className="text-3xl text-center">🧡 Detail 🧡</div>
 				<Link href="/">
 					<Button text="Go to Home" />
@@ -67,7 +67,7 @@ export default async function Detail({ params }) {
 						</span>
 					</div>
 				</div>
-				<hr className="-mt-5 -mb-8" />
+				<hr className="-mt-4 -mb-7" />
 				<div className="flex justify-between items-start">
 					<div className="flex items-center gap-2 text-neutral-400 text-sm">
 						<EyeIcon className="size-5" />
@@ -79,12 +79,16 @@ export default async function Detail({ params }) {
 						tweetId={id}
 					/>
 				</div>
-				<AddComment action={addComment} tweetId={tweet?.id} />
+				<AddComment
+					action={addComment}
+					tweetId={tweet?.id}
+					comments={comments}
+				/>
 				<div className="flex justify-between gap-5">
-					<h2>Latest 3 Comments</h2>
+					<h2>Latest 5 Comments</h2>
 					<span className="text-gray-400">Total {commentCount}</span>
 				</div>
-				<hr className="-mt-9 -mb-5" />
+				<hr className="-mt-8 -mb-5" />
 				<div className="flex flex-col gap-3">
 					{comments.map((comment) => (
 						<div key={comment.id}>
@@ -96,11 +100,13 @@ export default async function Detail({ params }) {
 									{comment.created_at.toLocaleTimeString()}
 								</div>
 								<div className="flex items-center">
-									<RemoveComment
-										action={removeComment}
-										tweetId={tweet?.id}
-										commentId={comment.id}
-									/>
+									{user.id === comment.user.id ? (
+										<RemoveComment
+											action={removeComment}
+											tweetId={tweet?.id}
+											commentId={comment.id}
+										/>
+									) : null}
 								</div>
 							</div>
 						</div>

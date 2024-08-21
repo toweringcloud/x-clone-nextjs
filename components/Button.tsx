@@ -1,11 +1,12 @@
 "use client";
 
+import { ButtonHTMLAttributes } from "react";
 import { useFormStatus } from "react-dom";
 import { cn } from "../libs/utils";
 
-interface FormButtonProps {
-	text: string;
+interface ButtonProps {
 	mode?: "submit" | "reset" | "button";
+	text: string;
 	color?: string;
 }
 
@@ -27,10 +28,11 @@ const setButtonColor = (color: string) => {
 };
 
 export default function Button({
-	text,
 	mode = "submit",
+	text,
 	color = "z",
-}: FormButtonProps) {
+	...rest
+}: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) {
 	const { pending } = useFormStatus();
 	return (
 		<button
@@ -41,6 +43,7 @@ export default function Button({
 				"rounded-2xl font-semibold after:h-10 p-2 w-full",
 				"disabled:bg-neutral-400 disabled:text-neutral-300 disabled:cursor-not-allowed"
 			)}
+			{...rest}
 		>
 			{pending ? "Loading..." : text}
 		</button>

@@ -1,7 +1,16 @@
 import Link from "next/link";
-import Button from "@/components/Button";
+import { EyeIcon } from "@heroicons/react/24/solid";
+import {
+	ChatBubbleBottomCenterIcon,
+	HandThumbUpIcon,
+	PencilSquareIcon,
+	TrashIcon,
+} from "@heroicons/react/24/outline";
 
+import Button from "@/components/Button";
 import AddTweet from "@/components/AddTweet";
+import RemoveTweet from "@/components/RemoveTweet";
+
 import { getUser, getTweetCount, getTweets, addTweet } from "./actions";
 
 export default async function Home() {
@@ -19,8 +28,8 @@ export default async function Home() {
 	// http://www.feelpoem.com/bbs/board.php?bo_table=m44&wr_id=711&sfl=mb_id%2C1&stx=dlhhok
 
 	return (
-		<div className="h-screen flex justify-center items-center">
-			<div className="flex flex-col gap-10 py-8 px-6 mx-[15%] min-w-[400px]">
+		<div className="h-screen flex justify-center items-start">
+			<div className="mx-[10%] min-w-[500px] py-10 px-6 flex flex-col gap-8">
 				<div className="text-3xl text-center">💙 Home 💙</div>
 				<Link href="/profile">
 					<Button text="Go to Profile" />
@@ -31,7 +40,7 @@ export default async function Home() {
 					<h2>Latest 5 Tweets</h2>
 					<span className="text-gray-400">Total {tweetCount}</span>
 				</div>
-				<hr className="-mt-9 -mb-5" />
+				<hr className="-mt-8 -mb-5" />
 				<div className="flex flex-col gap-3">
 					{tweets.map((item) => (
 						<div key={item.id}>
@@ -45,6 +54,25 @@ export default async function Home() {
 									</div>
 								</div>
 							</Link>
+							<div className="text-xs text-gray-400 mt-1 flex justify-between">
+								<div className="flex gap-4 items-center *:flex *:gap-1 *:items-center">
+									<span>
+										<EyeIcon className="size-4" />
+										{item.views}
+									</span>
+									<span>
+										<HandThumbUpIcon className="size-4" />
+										{item._count.likes}
+									</span>
+									<span>
+										<ChatBubbleBottomCenterIcon className="size-4" />
+										{item._count.comments}
+									</span>
+								</div>
+								<div className="mr-1 flex gap-1 items-center *:flex *:gap-1 *:items-center">
+									{item.user.username}
+								</div>
+							</div>
 						</div>
 					))}
 				</div>

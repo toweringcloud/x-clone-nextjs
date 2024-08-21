@@ -6,7 +6,7 @@ import { HandThumbUpIcon as OutlineHandThumbUpIcon } from "@heroicons/react/24/o
 
 import { dislikeTweet, likeTweet } from "@/app/tweets/[id]/actions";
 
-interface LikeButtonProps {
+interface ButtonLikeProps {
 	isLiked: boolean;
 	likeCount: number;
 	tweetId: number;
@@ -16,7 +16,7 @@ export default function ButtonLike({
 	isLiked,
 	likeCount,
 	tweetId,
-}: LikeButtonProps) {
+}: ButtonLikeProps) {
 	const [state, reducerFn] = useOptimistic(
 		{ isLiked, likeCount },
 		(prevState, payload) => ({
