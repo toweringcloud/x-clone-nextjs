@@ -41,7 +41,7 @@ export default async function Detail({ params }) {
 	return (
 		<div className="h-screen flex justify-center items-start">
 			<div className="mx-[10%] min-w-[500px] py-10 px-6 flex flex-col gap-8">
-				<div className="text-3xl text-center">💚 User Info 💚</div>
+				<div className="text-3xl text-center">🖤 User Info 🖤</div>
 				<div className="grid grid-cols-2 gap-2">
 					<span>
 						<Link href="/">
@@ -88,7 +88,7 @@ export default async function Detail({ params }) {
 					{tweets.map((item) => (
 						<div key={item.id}>
 							<Link href={`/tweets/${item.id}`}>
-								<div className="text-xs border rounded-md p-3 bg-green-500 hover:bg-green-700 flex justify-between items-center">
+								<div className="text-xs border rounded-md p-3 bg-stone-500 hover:bg-stone-700 flex justify-between items-center">
 									<div className="flex text-white w-[80%]">
 										{item.tweet}
 									</div>
