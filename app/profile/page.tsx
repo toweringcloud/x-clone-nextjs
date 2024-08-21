@@ -48,7 +48,23 @@ export default async function Profile() {
 		<div className="h-screen flex justify-center items-start">
 			<div className="mx-[10%] min-w-[500px] py-10 px-6 flex flex-col gap-8">
 				<div className="text-3xl text-center">💚 Profile 💚</div>
-				<h1 className="text-center -mt-2">
+				<div className="grid grid-cols-2 gap-2">
+					<span>
+						<form action={goHome} className="-mb-5">
+							<Button text="Go to Home" />
+						</form>
+						{/* <Link href="/">
+							<Button text="Go to Home" />
+						</Link> */}
+					</span>
+					<span>
+						<form action={logOut}>
+							<Button text="Sign-out" color="R" />
+						</form>
+					</span>
+				</div>
+
+				<h1 className="text-center">
 					<span>::::: Welcome, </span>
 					<span className="text-blue-500 text-lg font-semibold">
 						{user?.username}
@@ -62,7 +78,7 @@ export default async function Profile() {
 						viewBox="0 0 24 24"
 						stroke-width="1.5"
 						stroke="currentColor"
-						className="size-96"
+						className="size-80"
 					>
 						<path
 							stroke-linecap="round"
@@ -120,13 +136,6 @@ export default async function Profile() {
 						</div>
 					))}
 				</div>
-
-				<form action={goHome} className="-mb-5">
-					<Button text="Go to Home" />
-				</form>
-				<form action={logOut}>
-					<Button text="Log out" color="R" />
-				</form>
 			</div>
 		</div>
 	);

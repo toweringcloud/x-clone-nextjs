@@ -17,7 +17,7 @@ export default function LogIn() {
 	return (
 		<div className="h-screen flex justify-center items-center">
 			<div className="flex flex-col gap-10 py-8 px-6 mx-[25%] min-w-[400px]">
-				<div className="text-3xl text-center">💜 Sign-in 💜</div>
+				<div className="text-3xl text-center">💗 Sign-in 💗</div>
 				<form action={dispatch} className="flex flex-col gap-3">
 					<Input
 						name="email"
@@ -33,7 +33,7 @@ export default function LogIn() {
 						required
 						errors={state?.fieldErrors.password}
 					/>
-					<Button text="Verify account" color="V" />
+					<Button text="Verify account" color="R" />
 				</form>
 				<hr className="-mt-5 -mb-5" />
 				<Link href="/create-account">

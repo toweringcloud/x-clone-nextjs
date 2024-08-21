@@ -50,9 +50,20 @@ export default async function Detail({ params }) {
 		<div className="h-screen flex justify-center items-start">
 			<div className="mx-[10%] min-w-[500px] py-10 px-6 flex flex-col gap-8">
 				<div className="text-3xl text-center">🧡 Detail 🧡</div>
-				<Link href="/">
-					<Button text="Go to Home" />
-				</Link>
+
+				<div className="grid grid-cols-2 gap-2">
+					<span>
+						<Link href="/">
+							<Button text="Go to Home" />
+						</Link>
+					</span>
+					<span>
+						<Link href="/profile">
+							<Button text="Go to Profile" color="G" />
+						</Link>
+					</span>
+				</div>
+
 				<h2>Tweet Info ({tweet?.id})</h2>
 				<hr className="-mt-9 -mb-5" />
 				<div className="flex flex-col gap-2 text-gray-400">

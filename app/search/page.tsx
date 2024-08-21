@@ -8,9 +8,9 @@ import {
 } from "@heroicons/react/24/outline";
 
 import Button from "@/components/Button";
-import AddTweet from "@/components/AddTweet";
+import SearchTweet from "@/components/SearchTweet";
 
-import { getUser, getTweetCount, getTweets, addTweet } from "./actions";
+import { getUser, getTweetCount, searchTweets } from "./actions";
 
 export default async function Home() {
 	const user = await getUser();
@@ -21,29 +21,26 @@ export default async function Home() {
 
 	let currentPage = 0;
 	const pageCount = tweetCount / 5 + 1;
-	const tweets = await getTweets(5, currentPage);
-
-	//-wise sayings (life quotes)
-	// http://www.feelpoem.com/bbs/board.php?bo_table=m44&wr_id=711&sfl=mb_id%2C1&stx=dlhhok
+	const tweets = await searchTweets(5, currentPage);
 
 	return (
 		<div className="h-screen flex justify-center items-start">
 			<div className="mx-[10%] min-w-[500px] py-10 px-6 flex flex-col gap-8">
-				<div className="text-3xl text-center">💙 Home 💙</div>
+				<div className="text-3xl text-center">💛 Search 💛</div>
 				<div className="grid grid-cols-2 gap-2">
 					<span>
-						<Link href="/profile">
-							<Button text="Go to Profile" />
+						<Link href="/">
+							<Button text="Go to Home" />
 						</Link>
 					</span>
 					<span>
-						<Link href="/search">
-							<Button text="Go to Search" color="Y" />
+						<Link href="/profile">
+							<Button text="Go to Profile" color="G" />
 						</Link>
 					</span>
 				</div>
 
-				<AddTweet action={addTweet} />
+				<SearchTweet action={searchTweets} />
 
 				<div className="flex justify-between gap-5">
 					<h2>Latest 5 Tweets</h2>
@@ -54,7 +51,7 @@ export default async function Home() {
 					{tweets.map((item) => (
 						<div key={item.id}>
 							<Link href={`/tweets/${item.id}`}>
-								<div className="text-xs border rounded-md p-3 bg-sky-500 hover:bg-sky-700 flex justify-between items-center">
+								<div className="text-xs border rounded-md p-3 bg-yellow-500 hover:bg-yellow-700 flex justify-between items-center">
 									<div className="flex text-white w-[80%]">
 										{item.tweet}
 									</div>

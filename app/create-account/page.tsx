@@ -14,7 +14,7 @@ export default function CreateAccount() {
 	return (
 		<div className="h-screen flex justify-center items-center">
 			<div className="flex flex-col gap-10 py-8 px-6 mx-[25%] min-w-[400px]">
-				<div className="text-3xl text-center">🖤 Sign-up 🖤</div>
+				<div className="text-3xl text-center">💜 Sign-up 💜</div>
 				<form action={dispatch} className="flex flex-col gap-3">
 					<Input
 						name="username"
@@ -48,7 +48,7 @@ export default function CreateAccount() {
 						minLength={5}
 						errors={state?.fieldErrors.confirm_password}
 					/>
-					<Button text="Create account" />
+					<Button text="Create account" color="V" />
 				</form>
 				<hr className="-mt-5 -mb-5" />
 				<Link href="/log-in">
