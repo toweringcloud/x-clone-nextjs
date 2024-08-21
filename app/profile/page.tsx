@@ -32,11 +32,6 @@ export default async function Profile() {
 	const pageCount = tweetCount / 3 + 1;
 	const tweets = await getTweets(3, currentPage);
 
-	const goHome = async () => {
-		"use server";
-		redirect("/");
-	};
-
 	const logOut = async () => {
 		"use server";
 		const session = await getSession();
@@ -50,12 +45,9 @@ export default async function Profile() {
 				<div className="text-3xl text-center">💚 Profile 💚</div>
 				<div className="grid grid-cols-2 gap-2">
 					<span>
-						<form action={goHome} className="-mb-5">
+						<Link href="/">
 							<Button text="Go to Home" />
-						</form>
-						{/* <Link href="/">
-							<Button text="Go to Home" />
-						</Link> */}
+						</Link>
 					</span>
 					<span>
 						<form action={logOut}>
