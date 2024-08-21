@@ -41,13 +41,19 @@ export default function AddComment({
 	return (
 		<form action={dispatch} ref={formRef} className="flex flex-col gap-3">
 			<Input
+				type="hidden"
+				name="tweetId"
+				value={tweetId}
+				className="h-0 -mb-6"
+				required
+			/>
+			<Input
 				type="text"
 				name="payload"
 				required
 				placeholder="Add your comment!"
 				errors={state?.fieldErrors.payload}
 			/>
-			<Input type="hidden" name="tweetId" value={tweetId} required />
 			<Button text="Upload Comment" color="O" onClick={onClick} />
 		</form>
 	);
