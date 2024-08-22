@@ -1,48 +1,40 @@
 "use client";
 
-import { useEffect, useOptimistic, useRef } from "react";
-import { useFormState } from "react-dom";
+import { useEffect, useState } from "react";
+import { useDebounce } from "@/libs/hooks";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 
 interface SearchTweetProps {
-	action: Function;
-	keyword: string;
+	searchTweets: Function;
 }
 
-export default function SearchTweet({ action, keyword }: AddTweetProps) {
-	const [state, dispatch] = useFormState(action, null);
-	const formRef = useRef<HTMLFormElement>(null);
-	const handleReset = () => {
-		formRef.current?.reset();
-	};
-
-	const [stateVal, reducerFn] = useOptimistic(
-		{ keyword },
-		(prevState, payload) => ({})
-	);
-
-	const onClick = () => {
-		//-handle ui action for optimistic response
-		reducerFn(undefined);
-	};
+export default function SearchTweet({ searchTweets }: SearchTweetProps) {
+	const [input, setInput] = useState("");
+	const [debouncedInput, setDebouncedInput] = useDebounce(input, 1000);
 
 	useEffect(() => {
-		//-handle db action for real response
-		handleReset();
-	}, [state, keyword]);
+		if (input != "") {
+			// setRecoilValue(debouncedInput);
+			console.log(input);
+		}
+	}, [debouncedInput]);
 
 	return (
-		<form action={dispatch} ref={formRef} className="flex flex-col gap-3">
+		<div className="flex flex-col gap-3">
 			<Input
+				type="text"
 				name="keyword"
 				required
 				placeholder="Input keyword to search"
-				type="text"
-				errors={state?.fieldErrors.keyword}
+				onChange={(event) => setInput(event.target.value)}
 			/>
-			<Button text="Search Tweet" color="Y" />
-		</form>
+			<Button
+				text="Search Tweet"
+				color="Y"
+				onClick={() => searchTweets(debouncedInput, 5, 0)}
+			/>
+		</div>
 	);
 }

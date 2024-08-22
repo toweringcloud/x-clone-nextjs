@@ -21,13 +21,23 @@ export async function getUser() {
 	redirect("/log-in");
 }
 
-export async function getTweetCount() {
-	const tweetCount = await db.tweet.count({});
+export async function getTweetCount(keyword: string) {
+	const tweetCount = await db.tweet.count({
+		where: {
+			tweet: {
+				contains: keyword,
+			},
+		},
+	});
 	if (!tweetCount) return 0;
 	return tweetCount;
 }
 
-export async function searchTweets(count: number, page: number) {
+export async function searchTweets(
+	keyword: string,
+	count: number,
+	page: number
+) {
 	const tweets = await db.tweet.findMany({
 		select: {
 			id: true,
@@ -44,6 +54,11 @@ export async function searchTweets(count: number, page: number) {
 					comments: true,
 					likes: true,
 				},
+			},
+		},
+		where: {
+			tweet: {
+				contains: keyword,
 			},
 		},
 		skip: count * page,

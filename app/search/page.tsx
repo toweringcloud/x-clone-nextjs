@@ -16,12 +16,12 @@ export default async function Search() {
 	const user = await getUser();
 	console.log("# users : " + user!.username);
 
-	const tweetCount = await getTweetCount();
+	const tweetCount = await getTweetCount("소리");
 	console.log("# tweets : " + tweetCount);
 
 	let currentPage = 0;
 	const pageCount = tweetCount / 5 + 1;
-	const tweets = await searchTweets(5, currentPage);
+	const tweets = await searchTweets("소리", 5, currentPage);
 
 	return (
 		<div className="h-screen flex justify-center items-start">
@@ -40,7 +40,7 @@ export default async function Search() {
 					</span>
 				</div>
 
-				<SearchTweet action={searchTweets} />
+				<SearchTweet searchTweets={searchTweets} />
 
 				<div className="flex justify-between gap-5">
 					<h2>Latest 5 Tweets</h2>
