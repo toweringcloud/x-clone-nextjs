@@ -12,16 +12,19 @@ import SearchTweet from "@/components/SearchTweet";
 
 import { getUser, getTweetCount, searchTweets } from "./actions";
 
-export default async function Search() {
+export default async function Search({ searchParams }) {
 	const user = await getUser();
 	console.log("# users : " + user!.username);
 
-	const tweetCount = await getTweetCount("소리");
+	const keyword = searchParams?.keyword;
+	console.log("# keyword : " + keyword);
+
+	const tweetCount = await getTweetCount(keyword || "소리");
 	console.log("# tweets : " + tweetCount);
 
 	let currentPage = 0;
 	const pageCount = tweetCount / 5 + 1;
-	const tweets = await searchTweets("소리", 5, currentPage);
+	const tweets = await searchTweets(keyword || "소리", 5, currentPage);
 
 	return (
 		<div className="h-screen flex justify-center items-start">
@@ -40,7 +43,7 @@ export default async function Search() {
 					</span>
 				</div>
 
-				<SearchTweet searchTweets={searchTweets} />
+				<SearchTweet />
 
 				<div className="flex justify-between gap-5">
 					<h2>Latest 5 Tweets</h2>
