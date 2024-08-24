@@ -111,7 +111,7 @@ export default async function Detail({ params }) {
 									{comment.created_at.toLocaleTimeString()}
 								</div>
 								<div className="flex items-center">
-									{user.id === comment.user.id ? (
+									{user!.id === comment.user.id ? (
 										<RemoveComment
 											action={removeComment}
 											tweetId={tweet?.id}

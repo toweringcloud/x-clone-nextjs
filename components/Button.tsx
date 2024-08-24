@@ -8,6 +8,7 @@ interface ButtonProps {
 	mode?: "submit" | "reset" | "button";
 	text: string;
 	color?: string;
+	className?: string;
 }
 
 const setButtonColor = (color: string) => {
@@ -33,6 +34,7 @@ export default function Button({
 	mode = "submit",
 	text,
 	color = "z",
+	className,
 	...rest
 }: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) {
 	const { pending } = useFormStatus();
@@ -43,7 +45,8 @@ export default function Button({
 			className={cn(
 				setButtonColor(color),
 				"rounded-2xl font-semibold after:h-10 p-2 w-full",
-				"disabled:bg-neutral-400 disabled:text-neutral-300 disabled:cursor-not-allowed"
+				"disabled:bg-neutral-400 disabled:text-neutral-300 disabled:cursor-not-allowed",
+				className
 			)}
 			{...rest}
 		>

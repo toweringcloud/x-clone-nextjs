@@ -68,8 +68,8 @@ export default async function Detail({ params }) {
 
 				{user!.username === userName ? (
 					<div className="grid grid-cols-1">
-						<Link href={`/user/${userName}/edit`}>
-							<Button text="Edit User Profile" />
+						<Link href={`/users/${userName}/edit`}>
+							<Button text="Go to User Edit" />
 						</Link>
 					</div>
 				) : null}
