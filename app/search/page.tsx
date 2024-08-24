@@ -3,8 +3,6 @@ import { EyeIcon } from "@heroicons/react/24/solid";
 import {
 	ChatBubbleBottomCenterIcon,
 	HandThumbUpIcon,
-	PencilSquareIcon,
-	TrashIcon,
 } from "@heroicons/react/24/outline";
 
 import Button from "@/components/Button";
@@ -19,12 +17,12 @@ export default async function Search({ searchParams }) {
 	const keyword = searchParams?.keyword;
 	console.log("# keyword : " + keyword);
 
-	const tweetCount = await getTweetCount(keyword || "소리");
+	const tweetCount = !keyword ? 0 : await getTweetCount(keyword);
 	console.log("# tweets : " + tweetCount);
 
 	let currentPage = 0;
 	const pageCount = tweetCount / 5 + 1;
-	const tweets = await searchTweets(keyword || "소리", 5, currentPage);
+	const tweets = !keyword ? [] : await searchTweets(keyword, 5, currentPage);
 
 	return (
 		<div className="h-screen flex justify-center items-start">
@@ -43,7 +41,7 @@ export default async function Search({ searchParams }) {
 					</span>
 				</div>
 
-				<SearchTweet />
+				<SearchTweet keyword={keyword} />
 
 				<div className="flex justify-between gap-5">
 					<h2>Latest 5 Tweets</h2>

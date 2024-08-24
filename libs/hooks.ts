@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export function useDebounce(value, delay) {
+export function useDebounce(value: string, delay: number) {
 	const [debouncedValue, setDebouncedValue] = useState(value);
 
 	useEffect(() => {
@@ -16,6 +16,15 @@ export function useDebounce(value, delay) {
 	return debouncedValue;
 }
 
-export function useThrottle() {
-	return "";
+export function useThrottle(callback: Function, delay: number) {
+	const lastRun = useRef(Date.now());
+
+	return () => {
+		const timeElapsed = Date.now() - lastRun.current;
+
+		if (timeElapsed >= delay) {
+			callback();
+			lastRun.current = Date.now();
+		}
+	};
 }

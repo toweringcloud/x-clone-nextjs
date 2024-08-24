@@ -1,25 +1,15 @@
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
 import { EyeIcon } from "@heroicons/react/24/solid";
 import {
 	ChatBubbleBottomCenterIcon,
 	HandThumbUpIcon,
 	PencilSquareIcon,
-	TrashIcon,
 } from "@heroicons/react/24/outline";
 
 import Button from "@/components/Button";
 import RemoveTweet from "@/components/RemoveTweet";
-import { db } from "@/libs/db";
-import getSession from "@/libs/session";
 
-import {
-	getUser,
-	getTweetCount,
-	getTweets,
-	addTweet,
-	removeTweet,
-} from "./actions";
+import { getUser, getTweetCount, getTweets, removeTweet } from "./actions";
 
 export default async function Detail({ params }) {
 	const user = await getUser();
@@ -27,9 +17,6 @@ export default async function Detail({ params }) {
 
 	const userName = params.username;
 	console.log(userName);
-	// if (isNaN(userName) || user!.username !== userName) {
-	// 	return notFound();
-	// }
 
 	const tweetCount = await getTweetCount();
 	console.log("# tweets : " + tweetCount);
@@ -79,13 +66,21 @@ export default async function Detail({ params }) {
 					</svg>
 				</div>
 
+				{user!.username === userName ? (
+					<div className="grid grid-cols-1">
+						<Link href={`/user/${userName}/edit`}>
+							<Button text="Edit User Profile" />
+						</Link>
+					</div>
+				) : null}
+
 				<div className="flex justify-between gap-5">
 					<h2>Latest 3 Tweets</h2>
 					<span className="text-gray-400">Total {tweetCount}</span>
 				</div>
 				<hr className="-mt-8 -mb-5" />
 				<div className="flex flex-col gap-3">
-					{tweets.map((item) => (
+					{tweets!.map((item) => (
 						<div key={item.id}>
 							<Link href={`/tweets/${item.id}`}>
 								<div className="text-xs border rounded-md p-3 bg-stone-500 hover:bg-stone-700 flex justify-between items-center">

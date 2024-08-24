@@ -8,8 +8,8 @@ import Input from "@/components/Input";
 
 interface AddTweetProps {
 	action: Function;
-	tweetId: number;
-	articles: any;
+	tweetId?: number;
+	articles?: any;
 }
 
 export default function AddTweet({ action, tweetId, articles }: AddTweetProps) {
