@@ -22,12 +22,13 @@ export async function middleware(request: NextRequest) {
 		const session = await getSession();
 		if (session.id) {
 			return NextResponse.redirect(
-				`${process.env.NEXT_PUBLIC_DOMAIN_URL}/profile`
+				`${process.env.NEXT_PUBLIC_DOMAIN_URL}`
+			);
+		} else {
+			return NextResponse.redirect(
+				`${process.env.NEXT_PUBLIC_DOMAIN_URL}/log-in`
 			);
 		}
-		return NextResponse.redirect(
-			`${process.env.NEXT_PUBLIC_DOMAIN_URL}/log-in`
-		);
 	}
 }
 
