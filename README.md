@@ -1,5 +1,13 @@
 # nextjs-server-action
 
-## server action challenge : form data handling with useFormState & useFormStatus
+## features
 
-## zexy zod challenge : form data validation with zod in server action
+### auth : sign-up & sign-in
+
+### home : tweet add & list
+
+### detail : tweet remove, comment add
+
+### profile : owner info
+
+### search : keyword search
