@@ -21,11 +21,13 @@ export default function SearchTweet(props: ISearchProps) {
 
 	const handleSubmit = useThrottle(() => {
 		if (input.length > 1) {
+			// @ts-ignore: Object is possibly 'null'.
 			document.querySelector("#search").submit();
 		}
 	}, 2000);
 
 	const selectInputValue = () => {
+		// @ts-ignore: Object is possibly 'null'.
 		document.querySelector("#keyword").select();
 	};
 
