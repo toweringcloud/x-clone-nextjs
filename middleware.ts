@@ -18,18 +18,18 @@ export async function middleware(request: NextRequest) {
 	if (!exists) return;
 	console.log(currPath + " ^ " + exists);
 
-	if (currPath === "/") {
-		const session = await getSession();
-		if (session.id) {
-			return NextResponse.redirect(
-				`${process.env.NEXT_PUBLIC_DOMAIN_URL}`
-			);
-		} else {
-			return NextResponse.redirect(
-				`${process.env.NEXT_PUBLIC_DOMAIN_URL}/log-in`
-			);
-		}
-	}
+	// if (currPath === "/") {
+	// 	const session = await getSession();
+	// 	if (session.id) {
+	// 		return NextResponse.redirect(
+	// 			`${process.env.NEXT_PUBLIC_DOMAIN_URL}`
+	// 		);
+	// 	} else {
+	// 		return NextResponse.redirect(
+	// 			`${process.env.NEXT_PUBLIC_DOMAIN_URL}/log-in`
+	// 		);
+	// 	}
+	// }
 }
 
 export const config = {
