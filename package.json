@@ -11,7 +11,7 @@
 	],
 	"scripts": {
 		"dev": "next dev",
-		"build": "prisma generate && prisma migrate dev && prisma migrate deploy && next build",
+		"build": "prisma generate && next build",
 		"start": "next start"
 	},
 	"dependencies": {
