@@ -8,61 +8,69 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// datasource db {
-//   provider = "sqlite"
-//   url      = "file:./sqlite.db"
-// }
-
 datasource db {
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING")
+  provider = "sqlite"
+  url      = "file:./sqlite.db"
 }
 
+// datasource db {
+//   provider  = "postgresql"
+//   url       = env("POSTGRES_PRISMA_URL")
+//   directUrl = env("POSTGRES_URL_NON_POOLING")
+// }
+
 model User {
-  id          Int       @id @default(autoincrement())
-  username    String    @unique
-  password    String?
-  email       String?   @unique
-  bio         String?
-  createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @updatedAt @map("updated_at")
-  tweets      Tweet[]
-  likes       Like[]
-  comments    Comment[]
+  bio       String?
+  createdAt DateTime @default(now()) @map("created_at")
+  email     String?  @unique
+  id        Int      @id @default(autoincrement())
+  password  String?
+  updatedAt DateTime @updatedAt @map("updated_at")
+  username  String   @unique
+
+  comments Comment[]
+  likes    Like[]
+  tweets   Tweet[]
+
   @@index([id])
 }
 
 model Tweet {
-  id          Int       @id @default(autoincrement())
-  tweet       String
-  views       Int       @default(0)
-  createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @updatedAt @map("updated_at")
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      Int       @map("user_id")
-  likes       Like[]
-  comments    Comment[]
+  createdAt DateTime @default(now()) @map("created_at")
+  id        Int      @id @default(autoincrement())
+  tweet     String
+  updatedAt DateTime @updatedAt @map("updated_at")
+  views     Int      @default(0)
+
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int  @map("user_id")
+
+  likes    Like[]
+  comments Comment[]
+
   @@index([id])
 }
 
 model Like {
-  createdAt   DateTime  @default(now()) @map("created_at")
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      Int       @map("user_id")
-  tweet       Tweet     @relation(fields: [tweetId], references: [id], onDelete: Cascade)
-  tweetId     Int       @map("tweet_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  tweet     Tweet    @relation(fields: [tweetId], references: [id], onDelete: Cascade)
+  tweetId   Int      @map("tweet_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int      @map("user_id")
+
   @@id(name: "cid", [userId, tweetId])
 }
 
 model Comment {
-  id          Int       @id @default(autoincrement())
-  payload     String
-  created_at  DateTime  @default(now())
-  updated_at  DateTime  @updatedAt
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      Int       @map("user_id")
-  tweet       Tweet     @relation(fields: [tweetId], references: [id], onDelete: Cascade)
-  tweetId     Int       @map("tweet_id")
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  payload   String
+  updatedAt DateTime @updatedAt
+
+  tweet   Tweet @relation(fields: [tweetId], references: [id], onDelete: Cascade)
+  tweetId Int   @map("tweet_id")
+  user    User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId  Int   @map("user_id")
+
   @@index([id])
 }
