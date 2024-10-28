@@ -5,29 +5,31 @@ realtime social network service (mini twitter clone)
 ## features
 
 ### user authentication
-- sign-up
-![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot0.png?raw=true)
 
-- sign-in
-![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot1.png?raw=true)
+-   sign-up
+    ![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot0.png?raw=true)
 
-- profile
-![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot2.png?raw=true)
+-   sign-in
+    ![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot1.png?raw=true)
 
-- profile edit
-![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot3.png?raw=true)
+### user profile
 
+-   profile
+    ![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot2.png?raw=true)
 
-### tweet query & mutation
-- tweet list & add
-![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot4.png?raw=true)
+-   profile edit
+    ![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot3.png?raw=true)
 
-- tweet detail & comment add/remove
-![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot5.png?raw=true)
+### tweets crud
 
-- tweet search by keyword
-![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot6.png?raw=true)
+-   tweet list & add
+    ![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot4.png?raw=true)
 
+-   tweet detail & comment add/remove
+    ![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot5.png?raw=true)
+
+-   tweet search by keyword
+    ![Alt text](https://github.com/toweringcloud/x-clone-nextjs/blob/main/demo/snapshot6.png?raw=true)
 
 ## how to run
 
